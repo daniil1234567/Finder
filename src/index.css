@@ -14,3 +14,33 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: "Montserat-regular";
+  src: url("../public/fonts/Montserrat/static/Montserrat-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Montserat-bold";
+  src: url("../public/fonts/Montserrat/static/Montserrat-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Montserat-semiBold";
+  src: url("../public/fonts/Montserrat/static/Montserrat-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "Inter-regular";
+  src: url("../public/fonts/Inter/static/Inter-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Inter-bold";
+  src: url("../public/fonts/Inter/static/Inter-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Inter-semiBold";
+  src: url("../public/fonts/Inter/static/Inter-SemiBold.ttf");
+}
