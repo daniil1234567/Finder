@@ -1,8 +1,8 @@
-const ChatPage: React.FC<{  }> = props => {
+const ChatScreen: React.FC<{  }> = props => {
     return (
         <>
             hello world chat
         </>
     );
 };
-export default ChatPage;
+export default ChatScreen;

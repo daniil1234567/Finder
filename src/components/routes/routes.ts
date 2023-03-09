@@ -1,6 +1,6 @@
 import {Route} from "react-router-dom";
 import {ReactNode} from "react";
-import ChatPage from "../../views/Chat/ChatPage";
+import ChatPage from "../../views/chat/ChatScreen";
 
 
 export const privateRoutes = [
