@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ConfirmScreen = () => {
+const ChatScreen = () => {
     return (
         <div>
 
@@ -8,4 +8,4 @@ const ConfirmScreen = () => {
     );
 };
 
-export default ConfirmScreen;
+export default ChatScreen;

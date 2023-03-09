@@ -1,7 +1,6 @@
-import React, {useContext} from 'react';
-import {Route, Routes, Navigate} from 'react-router-dom';
-import {publicRoutes, privateRoutes} from './routes'
-import {useDispatch, useSelector} from "react-redux";
+import React from 'react';
+import {Route, Routes} from 'react-router-dom';
+import {privateRoutes, publicRoutes} from './routes'
 import {useTypedSelector} from "../../store";
 // import {AuthContext} from '../context';
 
@@ -15,14 +14,12 @@ const AppRouter = () => {
     const {user} = useTypedSelector((state) => state.auth)
 
     return (
-        user !== null
+        true//user !== null0
             ? <div>
                 <Routes>
                     {privateRoutes.map(route =>
                         <Route path={route.path} element={<route.element />} key={route.path}/>
-                    )
-                    }
-                    <Route path="/*" element={<Navigate to="/home" replace/>}/>
+                    )}
                 </Routes>
             </div>
             :
@@ -33,7 +30,6 @@ const AppRouter = () => {
                             <Route path={route.path} element={<route.element />} key={route.path}/>
                         )
                     }
-                    <Route path="/*" element={<Navigate to="/chat" replace/>}/>
                 </Routes>
             </div>
 
