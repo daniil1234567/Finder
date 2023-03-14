@@ -1,35 +1,33 @@
 import React from 'react';
-import {Route, Routes} from 'react-router-dom';
+import {Navigate, Route, Routes} from 'react-router-dom';
 import {privateRoutes, publicRoutes} from './routes'
-import {useTypedSelector} from "../../store";
+import LoginScreen from "../../views/authorization/registration/LoginScreen";
+import {useAppSelector} from '../../store';
+import {authAPI, useFetchLoginMutation} from "../../services/API/AuthenticationService";
+import {Authentication} from "../../model/authentication/Authentication";
 // import {AuthContext} from '../context';
 
 const AppRouter = () => {
-    // const {isAuth, isLoading} = useContext(AuthContext)
-    //
-    // if (isLoading) {
-    //     return <Loader/>
-    // }
 
-    const {user} = useTypedSelector((state) => state.auth)
+    const {...user} = useAppSelector(state => state.auth)
 
     return (
-        true//user !== null0
+        user.user !== null
             ? <div>
                 <Routes>
                     {privateRoutes.map(route =>
-                        <Route path={route.path} element={<route.element />} key={route.path}/>
+                        <Route path={route.path} element={<route.element/>} key={route.path}/>
                     )}
+                    <Route path="/*" element={<Navigate to="/" replace/>}/>
                 </Routes>
             </div>
             :
             <div>
                 <Routes>
-                    {
-                        publicRoutes.map(route =>
-                            <Route path={route.path} element={<route.element />} key={route.path}/>
-                        )
-                    }
+                    {publicRoutes.map(route =>
+                        <Route path={route.path} element={<route.element/>} key={route.path}/>
+                    )}
+                    <Route path="/*" element={<Navigate to="/login" replace/>}/>
                 </Routes>
             </div>
 

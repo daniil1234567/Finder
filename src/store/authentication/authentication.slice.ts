@@ -1,42 +1,34 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {IUser, IUserState} from "../../model/user/IUser";
+import {ContactType} from "../../model/type/ContactType";
+import {fetchAuth} from "./authentication.actions";
+import {authAPI} from "../../services/API/AuthenticationService";
 
+const initialState: IUserState = {
+    user: null,
+    isLoading: false,
+    error: ''
+}
 
 const authenticationSlice = createSlice({
     name: 'auth',
-    initialState: {
-        id: null,
-        user: null,
-        token: null,
-        surname: null,
-        name: null,
-        avatar: null,
-        isAuth: false
-    },
+    initialState,
     reducers: {
-        setCredentials: (state, action) => {
-            const {login, jwtToken, userId} = action.payload;
-            state.user = login;
-            state.token = jwtToken;
-            state.id = userId;
-            state.isAuth = true;
+        setCredentials: (state, action: PayloadAction<IUser>) => {
+            state.user = action.payload
+            state.isLoading = true
         },
-        logOut: (state) => {
-            state.id = null;
-            state.user = null;
-            state.token = null;
-            state.name = null;
-            state.surname = null;
-            state.avatar = null;
+        setCredentialsSuccess: (state) => {
+            state.isLoading = false
         },
-        additionalInfo: (state, action) => {
-            const {name, surname, avatar} = action.payload;
-            state.name = name;
-            state.surname = surname;
-            state.avatar = avatar;
-        }
-    },
-
+        setCredentialsError: (state, action: PayloadAction<string>) => {
+            state.user = initialState.user
+            state.isLoading = false
+            state.error = action.payload
+        },
+        logOut: () => initialState,
+    }
 })
 
 export default authenticationSlice.reducer
-export const { setCredentials, logOut, additionalInfo } = authenticationSlice.actions
+export const {logOut, setCredentials, setCredentialsSuccess, setCredentialsError} = authenticationSlice.actions
